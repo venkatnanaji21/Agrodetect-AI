@@ -1,0 +1,84 @@
+# app.py
+from flask import Flask, render_template_string
+
+app = Flask(__name__)
+
+# Single HTML template combining Navbar, Hero, Features, HowItWorks, SupportedCrops, Footer
+template = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Identification</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; padding:0; background-color:#f0f4f8; }
+        nav { background-color: #2c3e50; color:white; padding: 1rem; text-align:center; }
+        section { padding: 2rem; text-align:center; }
+        footer { background-color: #2c3e50; color:white; padding:1rem; text-align:center; }
+        h1, h2 { margin-bottom: 1rem; }
+        .feature, .crop { margin-bottom: 1rem; padding:1rem; background-color:#ecf0f1; border-radius:8px; }
+        .container { max-width: 800px; margin: auto; }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <h1>Plant Disease Identification Engine</h1>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <h2>Detect Plant Diseases Instantly</h2>
+            <p>Upload a leaf image and get accurate disease detection using AI.</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="feature">AI-based image recognition</div>
+            <div class="feature">Supports multiple crops</div>
+            <div class="feature">User-friendly interface</div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <p>1. Upload an image of the plant leaf.<br>
+               2. Our AI model analyzes the image.<br>
+               3. Get instant results about the disease and recommendations.</p>
+        </div>
+    </section>
+
+    <!-- Supported Crops Section -->
+    <section id="supported-crops">
+        <div class="container">
+            <h2>Supported Crops</h2>
+            <div class="crop">Tomato</div>
+            <div class="crop">Potato</div>
+            <div class="crop">Maize</div>
+            <div class="crop">Wheat</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 Plant Disease Detection. All rights reserved.
+    </footer>
+
+</body>
+</html>
+"""
+
+@app.route('/')
+def index():
+    return render_template_string(template)
+
+if __name__ == "__main__":
+    app.run(debug=True)
